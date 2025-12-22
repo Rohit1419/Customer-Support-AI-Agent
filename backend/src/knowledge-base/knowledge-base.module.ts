@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { KnowledgeBaseService } from './knowledge-base.service';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { AiService } from 'src/ai/ai.service';
+import { PrismaModule } from 'src/prisma/prisma.module';
+import { AiModule } from 'src/ai/ai.module';
 
 @Module({
-  imports: [PrismaService, AiService],
+  imports: [PrismaModule, AiModule],
   providers: [KnowledgeBaseService],
 })
 export class KnowledgeBaseModule {}

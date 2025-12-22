@@ -5,6 +5,7 @@ import { ConfigService } from '@nestjs/config';
 @Injectable()
 export class AiService {
   private genAI: GoogleGenAI;
+
   constructor(private config: ConfigService) {
     this.genAI = new GoogleGenAI({
       apiKey: this.config.get('GOOGLE_API_KEY'),
