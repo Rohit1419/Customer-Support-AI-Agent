@@ -14,11 +14,14 @@ datasource db {
   provider = "postgresql"
 }
 
+// tables 
+
 model Knowlagebase {
-  id        String   @id @default(uuid())
+  id        String                     @id @default(uuid())
   content   String
   category  String
-  createdAt DateTime @default(now())
+  embedding Unsupported("vector(768)") // beacuse gemini embedding vector is of 768 dimensions
+  createdAt DateTime                   @default(now())
 }
 
 model Conversation {
@@ -33,7 +36,7 @@ model Message {
   // releationship to conversation
   conversation   Conversation @relation(fields: [conversationId], references: [id])
 
-  sender     String
-  text       String
+  sender    String
+  text      String
   timestamp DateTime @default(now())
 }
