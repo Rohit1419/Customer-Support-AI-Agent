@@ -5,9 +5,10 @@ import { PrismaService } from './prisma/prisma.service';
 import { PrismaModule } from './prisma/prisma.module';
 import { ConfigModule } from '@nestjs/config';
 import { AiModule } from './ai/ai.module';
+import { KnowledgeBaseModule } from './knowledge-base/knowledge-base.module';
 
 @Module({
-  imports: [ConfigModule.forRoot({ isGlobal: true }), PrismaModule, AiModule],
+  imports: [ConfigModule.forRoot({ isGlobal: true }), PrismaModule, AiModule, KnowledgeBaseModule],
   controllers: [AppController],
   providers: [AppService, PrismaService],
 })
