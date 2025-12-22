@@ -1,0 +1,16 @@
+services:
+  db:
+    image: pgvector/pgvector:pg17
+    container_name: spur-postgres
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: rohit
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: spur_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: always
+
+volumes:
+  postgres_data:
