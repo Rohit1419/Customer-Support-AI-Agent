@@ -22,7 +22,7 @@ export class AiService {
   }
 
   //    generating the embedding for the given content
-  async gnerateEmbedding(text: string): Promise<number[]> {
+  async generateEmbedding(text: string): Promise<number[]> {
     const response = await this.genAI.models.embedContent({
       model: 'gemini-embedding-001',
       contents: [text],
