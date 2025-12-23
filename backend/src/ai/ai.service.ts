@@ -40,4 +40,34 @@ export class AiService {
 
     return this.normalize(embeddings[0].values);
   }
+
+  // generate the chat resposne
+  async generateChatResponse(params: {
+    systemPrompt: string;
+    userPrompt: string;
+    temperature?: number;
+  }): Promise<string> {
+    try {
+      const chatResponse = await this.genAI.models.generateContent({
+        model: 'gemini-2.5-flash-lite',
+        contents: [{ role: 'user', parts: [{ text: params.userPrompt }] }],
+        config: {
+          systemInstruction: params.systemPrompt,
+          temperature: params.temperature ?? 0.7,
+        },
+      });
+
+      if (!chatResponse || !chatResponse.text) {
+        throw new Error('Failed to generate chat response');
+      }
+
+      return chatResponse.text;
+    } catch (error) {
+      throw new Error(
+        `Failed to generate chat response: ${
+          error instanceof Error ? error.message : String(error)
+        }`,
+      );
+    }
+  }
 }
