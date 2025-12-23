@@ -6,5 +6,6 @@ import { AiModule } from 'src/ai/ai.module';
 @Module({
   imports: [PrismaModule, AiModule],
   providers: [KnowledgeBaseService],
+  exports: [KnowledgeBaseService],
 })
 export class KnowledgeBaseModule {}

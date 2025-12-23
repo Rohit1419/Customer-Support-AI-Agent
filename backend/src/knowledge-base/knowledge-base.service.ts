@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { AiService } from 'src/ai/ai.service';
-import { Prisma, Knowlagebase } from 'src/generated/prisma/client';
 
 @Injectable()
 export class KnowledgeBaseService {

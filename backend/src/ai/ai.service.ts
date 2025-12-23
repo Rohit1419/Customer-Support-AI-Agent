@@ -8,7 +8,7 @@ export class AiService {
 
   constructor(private config: ConfigService) {
     this.genAI = new GoogleGenAI({
-      apiKey: this.config.get('GOOGLE_API_KEY'),
+      apiKey: this.config.get('GEMINI_API_KEY'),
     });
   }
   // normalising the embedding
