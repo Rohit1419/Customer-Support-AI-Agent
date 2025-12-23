@@ -12,7 +12,7 @@ export class ChatService {
 
   // get the chat
 
-  async getChatResponse(userPrompt: string, sessionId: string) {
+  async generateChatResponse(userPrompt: string, sessionId: string) {
     // geneare user query vector
 
     const userQueryVector = await this.aiService.generateEmbedding(userPrompt);
