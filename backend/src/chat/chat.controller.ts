@@ -6,7 +6,7 @@ import { sendMessageDto } from './dto';
 export class ChatController {
   constructor(private chatService: ChatService) {}
 
-  @Post('chat/message')
+  @Post('/message')
   async sendMessage(@Body() dto: sendMessageDto) {
     return this.chatService.generateChatResponse(dto.message, dto.sessionId);
   }

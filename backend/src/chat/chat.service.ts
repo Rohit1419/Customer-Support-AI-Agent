@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { AiService } from '../ai/ai.service';
-import { ConfigService } from '@nestjs/config';
+
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()

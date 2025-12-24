@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, ServiceUnavailableException } from '@nestjs/common';
 import { GoogleGenAI } from '@google/genai';
 import { ConfigService } from '@nestjs/config';
 
@@ -54,6 +54,7 @@ export class AiService {
         config: {
           systemInstruction: params.systemPrompt,
           temperature: params.temperature ?? 0.7,
+          maxOutputTokens: 1000, // check for optimal value to tune according to practical usages
         },
       });
 
@@ -63,10 +64,14 @@ export class AiService {
 
       return chatResponse.text;
     } catch (error) {
-      throw new Error(
-        `Failed to generate chat response: ${
-          error instanceof Error ? error.message : String(error)
-        }`,
+      if (error.status === 429) {
+        throw new ServiceUnavailableException(
+          'The AI helper is little busy now, please wait a moment and try again.',
+        );
+      }
+
+      throw new ServiceUnavailableException(
+        'I am having trouble thinking right now, please try again later.',
       );
     }
   }
