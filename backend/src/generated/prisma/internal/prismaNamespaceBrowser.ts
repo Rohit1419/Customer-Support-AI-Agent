@@ -51,7 +51,7 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  Knowlagebase: 'Knowlagebase',
+  KnowledgeChunk: 'KnowledgeChunk',
   Conversation: 'Conversation',
   Message: 'Message'
 } as const
@@ -72,14 +72,17 @@ export const TransactionIsolationLevel = {
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-export const KnowlagebaseScalarFieldEnum = {
+export const KnowledgeChunkScalarFieldEnum = {
   id: 'id',
   content: 'content',
-  category: 'category',
-  createdAt: 'createdAt'
+  sourceFile: 'sourceFile',
+  sourceType: 'sourceType',
+  priority: 'priority',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
-export type KnowlagebaseScalarFieldEnum = (typeof KnowlagebaseScalarFieldEnum)[keyof typeof KnowlagebaseScalarFieldEnum]
+export type KnowledgeChunkScalarFieldEnum = (typeof KnowledgeChunkScalarFieldEnum)[keyof typeof KnowledgeChunkScalarFieldEnum]
 
 
 export const ConversationScalarFieldEnum = {
@@ -95,7 +98,7 @@ export const MessageScalarFieldEnum = {
   conversationId: 'conversationId',
   sender: 'sender',
   text: 'text',
-  timestamp: 'timestamp'
+  createdAt: 'createdAt'
 } as const
 
 export type MessageScalarFieldEnum = (typeof MessageScalarFieldEnum)[keyof typeof MessageScalarFieldEnum]

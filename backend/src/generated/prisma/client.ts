@@ -27,8 +27,8 @@ export * from "./enums.js"
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Knowlagebases
- * const knowlagebases = await prisma.knowlagebase.findMany()
+ * // Fetch zero or more KnowledgeChunks
+ * const knowledgeChunks = await prisma.knowledgeChunk.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -38,10 +38,10 @@ export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts exten
 export { Prisma }
 
 /**
- * Model Knowlagebase
+ * Model KnowledgeChunk
  * 
  */
-export type Knowlagebase = Prisma.KnowlagebaseModel
+export type KnowledgeChunk = Prisma.KnowledgeChunkModel
 /**
  * Model Conversation
  * 

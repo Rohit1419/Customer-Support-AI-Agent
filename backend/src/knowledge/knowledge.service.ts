@@ -7,7 +7,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 @Injectable()
-export class KnowledgeBaseService {
+export class KnowledgeService {
   constructor(
     private prisma: PrismaService,
     private aiService: AiService,

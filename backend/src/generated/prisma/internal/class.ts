@@ -20,7 +20,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.2.0",
   "engineVersion": "0c8ef2ce45c83248ab3df073180d5eda9e8be7a3",
   "activeProvider": "postgresql",
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider     = \"prisma-client\"\n  output       = \"../src/generated/prisma\"\n  moduleFormat = \"cjs\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\n// tables \n\nmodel Knowlagebase {\n  id        String                     @id @default(uuid())\n  content   String\n  category  String\n  embedding Unsupported(\"vector(768)\") // beacuse gemini embedding vector is of 768 dimensions\n  createdAt DateTime                   @default(now())\n}\n\nmodel Conversation {\n  id        String    @id @default(uuid())\n  createdAt DateTime  @default(now())\n  messages  Message[]\n}\n\nmodel Message {\n  id             String       @id @default(uuid())\n  conversationId String\n  // releationship to conversation\n  conversation   Conversation @relation(fields: [conversationId], references: [id])\n\n  sender    String\n  text      String\n  timestamp DateTime @default(now())\n}\n",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider     = \"prisma-client\"\n  output       = \"../src/generated/prisma\"\n  moduleFormat = \"cjs\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\n// tables \n\nmodel KnowledgeChunk {\n  id         String                     @id @default(uuid())\n  content    String\n  embedding  Unsupported(\"vector(768)\") // beacuse gemini embedding vector is of 768 dimensions\n  sourceFile String\n  sourceType String\n  priority   Int                        @default(0)\n  createdAt  DateTime                   @default(now())\n  updatedAt  DateTime                   @default(now())\n\n  @@index([sourceFile])\n  @@index([sourceType])\n}\n\nmodel Conversation {\n  id        String    @id @default(uuid())\n  createdAt DateTime  @default(now())\n  messages  Message[]\n}\n\nmodel Message {\n  id             String       @id @default(uuid())\n  conversationId String\n  // releationship to conversation\n  conversation   Conversation @relation(fields: [conversationId], references: [id])\n\n  sender    String\n  text      String\n  createdAt DateTime @default(now())\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -28,7 +28,7 @@ const config: runtime.GetPrismaClientConfig = {
   }
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"Knowlagebase\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"content\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"category\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Conversation\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"messages\",\"kind\":\"object\",\"type\":\"Message\",\"relationName\":\"ConversationToMessage\"}],\"dbName\":null},\"Message\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"conversationId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"conversation\",\"kind\":\"object\",\"type\":\"Conversation\",\"relationName\":\"ConversationToMessage\"},{\"name\":\"sender\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"text\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"timestamp\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"KnowledgeChunk\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"content\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"sourceFile\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"sourceType\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"priority\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Conversation\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"messages\",\"kind\":\"object\",\"type\":\"Message\",\"relationName\":\"ConversationToMessage\"}],\"dbName\":null},\"Message\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"conversationId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"conversation\",\"kind\":\"object\",\"type\":\"Conversation\",\"relationName\":\"ConversationToMessage\"},{\"name\":\"sender\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"text\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 
 async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Module> {
   const { Buffer } = await import('node:buffer')
@@ -58,8 +58,8 @@ export interface PrismaClientConstructor {
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more Knowlagebases
-   * const knowlagebases = await prisma.knowlagebase.findMany()
+   * // Fetch zero or more KnowledgeChunks
+   * const knowledgeChunks = await prisma.knowledgeChunk.findMany()
    * ```
    * 
    * Read more in our [docs](https://pris.ly/d/client).
@@ -80,8 +80,8 @@ export interface PrismaClientConstructor {
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Knowlagebases
- * const knowlagebases = await prisma.knowlagebase.findMany()
+ * // Fetch zero or more KnowledgeChunks
+ * const knowledgeChunks = await prisma.knowledgeChunk.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -175,14 +175,14 @@ export interface PrismaClient<
   }>>
 
       /**
-   * `prisma.knowlagebase`: Exposes CRUD operations for the **Knowlagebase** model.
+   * `prisma.knowledgeChunk`: Exposes CRUD operations for the **KnowledgeChunk** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Knowlagebases
-    * const knowlagebases = await prisma.knowlagebase.findMany()
+    * // Fetch zero or more KnowledgeChunks
+    * const knowledgeChunks = await prisma.knowledgeChunk.findMany()
     * ```
     */
-  get knowlagebase(): Prisma.KnowlagebaseDelegate<ExtArgs, { omit: OmitOpts }>;
+  get knowledgeChunk(): Prisma.KnowledgeChunkDelegate<ExtArgs, { omit: OmitOpts }>;
 
   /**
    * `prisma.conversation`: Exposes CRUD operations for the **Conversation** model.

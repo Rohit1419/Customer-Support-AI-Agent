@@ -5,7 +5,7 @@ import { PrismaService } from './prisma/prisma.service';
 import { PrismaModule } from './prisma/prisma.module';
 import { ConfigModule } from '@nestjs/config';
 import { AiModule } from './ai/ai.module';
-import { KnowledgeBaseModule } from './knowledge/knowledge.module';
+import { KnowledgeModule } from './knowledge/knowledge.module';
 import { ChatModule } from './chat/chat.module';
 
 @Module({
@@ -13,7 +13,7 @@ import { ChatModule } from './chat/chat.module';
     ConfigModule.forRoot({ isGlobal: true }),
     PrismaModule,
     AiModule,
-    KnowledgeBaseModule,
+    KnowledgeModule,
     ChatModule,
   ],
   controllers: [AppController],

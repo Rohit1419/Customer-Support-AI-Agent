@@ -18,10 +18,10 @@ export { Prisma }
 export * as $Enums from './enums.js'
 export * from './enums.js';
 /**
- * Model Knowlagebase
+ * Model KnowledgeChunk
  * 
  */
-export type Knowlagebase = Prisma.KnowlagebaseModel
+export type KnowledgeChunk = Prisma.KnowledgeChunkModel
 /**
  * Model Conversation
  * 
