@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { KnowledgeBaseService } from './knowledge-base.service';
+import { KnowledgeBaseService } from './knowledge.service';
 import { PrismaModule } from 'src/prisma/prisma.module';
 import { AiModule } from 'src/ai/ai.module';
 
