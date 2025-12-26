@@ -23,22 +23,37 @@ export class AiService {
   }
 
   //    generating the embedding for the given content
-  async generateEmbedding(text: string): Promise<number[]> {
-    const response = await this.genAI.models.embedContent({
-      model: 'gemini-embedding-001',
-      contents: [text],
-      config: {
-        outputDimensionality: 768,
-      },
-    });
-
-    const embeddings = response.embeddings;
-
-    if (!embeddings || embeddings.length === 0 || !embeddings[0].values) {
-      throw new Error('Failed to generate embedding');
+  async generateEmbedding(texts: string[]): Promise<number[][]> {
+    if (texts.length === 0) {
+      return [];
     }
+    try {
+      const response = await this.genAI.models.embedContent({
+        model: 'gemini-embedding-001',
+        contents: texts,
+        config: {
+          outputDimensionality: 768,
+        },
+      });
 
-    return this.normalize(embeddings[0].values);
+      const embeddings = response.embeddings;
+
+      if (!embeddings || embeddings.length === 0 || !embeddings[0].values) {
+        throw new Error('Failed to generate embedding');
+      }
+
+      return embeddings.map((emb) => {
+        if (!emb.values) {
+          throw new Error('Embedding values missing');
+        }
+        return this.normalize(emb.values);
+      });
+    } catch (error) {
+      throw new ServiceUnavailableException(
+        'Failed to generate embeddings, please try again later.',
+        { cause: error },
+      );
+    }
   }
 
   // generate the chat resposne
