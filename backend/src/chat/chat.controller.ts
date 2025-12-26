@@ -8,6 +8,6 @@ export class ChatController {
 
   @Post('/message')
   async sendMessage(@Body() dto: sendMessageDto) {
-    return this.chatService.generateChatResponse(dto.message, dto.sessionId);
+    return this.chatService.getChatResponse(dto.message, dto.sessionId);
   }
 }

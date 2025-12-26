@@ -1,6 +1,7 @@
 import { Injectable, ServiceUnavailableException } from '@nestjs/common';
 import { GoogleGenAI } from '@google/genai';
 import { ConfigService } from '@nestjs/config';
+import { SUPPORT_AGENT_SYSTEM_PROMPT } from './prompts';
 
 @Injectable()
 export class AiService {
@@ -58,18 +59,21 @@ export class AiService {
 
   // generate the chat resposne
   async generateChatResponse(params: {
-    systemPrompt: string;
+    context: string;
     userPrompt: string;
     temperature?: number;
   }): Promise<string> {
     try {
+      const systemPrompt = SUPPORT_AGENT_SYSTEM_PROMPT(params.context);
+
+      // LLM call
       const chatResponse = await this.genAI.models.generateContent({
         model: 'gemini-2.5-flash-lite',
         contents: [{ role: 'user', parts: [{ text: params.userPrompt }] }],
         config: {
-          systemInstruction: params.systemPrompt,
+          systemInstruction: systemPrompt,
           temperature: params.temperature ?? 0.7,
-          maxOutputTokens: 1000, // check for optimal value to tune according to practical usages
+          maxOutputTokens: 1000, // check for optimal value to tune according to practical usages later
         },
       });
 
