@@ -16,12 +16,18 @@ datasource db {
 
 // tables 
 
-model Knowlagebase {
-  id        String                     @id @default(uuid())
-  content   String
-  category  String
-  embedding Unsupported("vector(768)") // beacuse gemini embedding vector is of 768 dimensions
-  createdAt DateTime                   @default(now())
+model KnowledgeChunk {
+  id         String                     @id @default(uuid())
+  content    String
+  embedding  Unsupported("vector(768)") // beacuse gemini embedding vector is of 768 dimensions
+  sourceFile String
+  sourceType String
+  priority   Int                        @default(0)
+  createdAt  DateTime                   @default(now())
+  updatedAt  DateTime                   @default(now())
+
+  @@index([sourceFile])
+  @@index([sourceType])
 }
 
 model Conversation {
@@ -38,5 +44,5 @@ model Message {
 
   sender    String
   text      String
-  timestamp DateTime @default(now())
+  createdAt DateTime @default(now())
 }
