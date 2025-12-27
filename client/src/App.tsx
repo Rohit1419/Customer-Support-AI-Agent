@@ -1,9 +1,10 @@
 import "./App.css";
+import { ChatWidget } from "./components/ChatWidget";
 
 function App() {
   return (
     <>
-      <h1 className="bg-red-400">Hello World</h1>
+      <ChatWidget />
     </>
   );
 }

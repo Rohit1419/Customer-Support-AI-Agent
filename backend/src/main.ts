@@ -12,6 +12,12 @@ async function bootstrap() {
       transform: true,
     }),
   );
+
+  //cors
+  app.enableCors({
+    origin: 'http://localhost:5173',
+    methods: ['GET', 'POST'],
+  });
   await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();
