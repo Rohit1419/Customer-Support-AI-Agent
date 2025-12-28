@@ -55,16 +55,16 @@ graph TB
     KnowledgeService --> Gemini
     KnowledgeService --> Postgres
 
-    style UI fill:#e1f5ff
-    style Controller fill:#fff4e1
-    style ChatService fill:#e8f5e9
-    style AIService fill:#e8f5e9
-    style Redis fill:#ffebee
-    style Postgres fill:#f3e5f5
-    style Gemini fill:#fff9c4
+    style UI fill:#3b82f6,stroke:#1e40af,stroke-width:2px,color:#fff
+    style Controller fill:#f59e0b,stroke:#d97706,stroke-width:2px,color:#000
+    style ChatService fill:#10b981,stroke:#059669,stroke-width:2px,color:#fff
+    style AIService fill:#10b981,stroke:#059669,stroke-width:2px,color:#fff
+    style Redis fill:#ef4444,stroke:#dc2626,stroke-width:2px,color:#fff
+    style Postgres fill:#8b5cf6,stroke:#7c3aed,stroke-width:2px,color:#fff
+    style Gemini fill:#eab308,stroke:#ca8a04,stroke-width:2px,color:#000
 ```
 
-## 🔄 Buckle Up! & see Lisa in action wild journy 🏃
+## 🔄 Buckle Up! & see Lisa in action wild journey 🏃
 
 ```mermaid
 sequenceDiagram
@@ -104,6 +104,93 @@ sequenceDiagram
     Controller-->>Frontend: JSON response
     Frontend-->>User: Display message
 ```
+
+## 💾 Data Flow: Knowledge Ingestion
+
+```mermaid
+graph LR
+    subgraph "Ingestion Process"
+        MD[Markdown Files<br/>knowledgeData/]
+        Split[Text Splitter<br/>800 chars, 100 overlap]
+        Batch[Batch Processor<br/>Group chunks]
+        Embed[Gemini Embedding<br/>768 dimensions]
+        Normalize[Vector Normalization<br/>Cosine similarity]
+        Store[(PostgreSQL<br/>KnowledgeChunk table)]
+    end
+
+    MD -->|Read| Split
+    Split -->|Chunk| Batch
+    Batch -->|API Call| Embed
+    Embed -->|Raw vectors| Normalize
+    Normalize -->|Store| Store
+
+    style MD fill:#3b82f6,stroke:#1e40af,stroke-width:2px,color:#fff
+    style Split fill:#f59e0b,stroke:#d97706,stroke-width:2px,color:#000
+    style Batch fill:#8b5cf6,stroke:#7c3aed,stroke-width:2px,color:#fff
+    style Embed fill:#eab308,stroke:#ca8a04,stroke-width:2px,color:#000
+    style Normalize fill:#10b981,stroke:#059669,stroke-width:2px,color:#fff
+    style Store fill:#ef4444,stroke:#dc2626,stroke-width:2px,color:#fff
+```
+
+## 🗄️ Database Schema
+
+```mermaid
+erDiagram
+    KnowledgeChunk {
+        uuid id PK
+        string content
+        vector_768 embedding
+        string sourceFile
+        string sourceType
+    }
+
+    Conversation {
+        string id PK
+        timestamp createdAt
+        timestamp updatedAt
+    }
+
+    Message {
+        uuid id PK
+        string conversationId FK
+        enum sender
+        text text
+        timestamp createdAt
+    }
+
+    Conversation ||--o{ Message : contains
+```
+
+## 🔐 Redis Data Structure
+
+```mermaid
+graph TD
+    subgraph "Redis Keys"
+        Session[chat:session-uuid]
+    end
+
+    subgraph "List Structure"
+        Session --> Msg1["{user: 'Q1', ai: 'A1', ts: ...}"]
+        Session --> Msg2["{user: 'Q2', ai: 'A2', ts: ...}"]
+        Session --> Msg3["{user: 'Q3', ai: 'A3', ts: ...}"]
+        Session --> MsgN["... (max 10)"]
+    end
+
+    subgraph "TTL Behavior"
+        TTL[Expires after 10 minutes<br/>of inactivity]
+    end
+
+    Session -.->|EXPIRE| TTL
+
+    style Session fill:#ef4444,stroke:#dc2626,stroke-width:2px,color:#fff
+    style Msg1 fill:#10b981,stroke:#059669,stroke-width:2px,color:#fff
+    style Msg2 fill:#10b981,stroke:#059669,stroke-width:2px,color:#fff
+    style Msg3 fill:#10b981,stroke:#059669,stroke-width:2px,color:#fff
+    style MsgN fill:#10b981,stroke:#059669,stroke-width:2px,color:#fff
+    style TTL fill:#eab308,stroke:#ca8a04,stroke-width:2px,color:#000
+```
+
+---
 
 ## 🏗️ Architecture & Design Decisions
 
@@ -159,7 +246,7 @@ const fullPrompt = `
 
 - **Framework:** NestJS (TypeScript)
 - **Database:** PostgreSQL + pgvector extension
-- **Cache:** Redis (via ioredis)
+- **Cache:** Redis (via @nestjs-modules/ioredis)
 - **ORM:** Prisma with pgvector adapter
 - **LLM:** Google Gemini 2.5 Flash-Lite
 
@@ -257,6 +344,7 @@ This will ingest all Markdown files from `knowledgeData/`, chunk them, embed the
 cd backend
 pnpm start:dev
 # Server runs on http://localhost:3000
+# You just need this ! everything runs concurentlly
 ```
 
 **Frontend:**
@@ -318,7 +406,7 @@ Retrieve conversation history for a session.
 
 ---
 
-## Performance Optimizations
+## 📊 Performance Optimizations
 
 | Optimization              | Impact                                                 |
 | ------------------------- | ------------------------------------------------------ |
@@ -330,7 +418,7 @@ Retrieve conversation history for a session.
 
 ---
 
-## Future Enhancements
+## 🔮 Future Enhancements
 
 - [ ] **Streaming Responses:** Server-Sent Events for real-time typing effect
 - [ ] **Analytics Dashboard:** Track common questions, user satisfaction, etc.
