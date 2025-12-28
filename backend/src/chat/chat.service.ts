@@ -34,6 +34,7 @@ export class ChatService {
 
       // retriveing theh chat histroy /
       const history = await this.redis.lrange(`chat:${sessionId}`, -10, -1);
+
       const chatHistory = history
         .map((h) => JSON.parse(h))
         .map((msg) => `user: ${msg.user}\n ai: ${msg.ai}`)
@@ -116,10 +117,17 @@ export class ChatService {
     try {
       const rawHistory = await this.redis.lrange(`chat:${sessionId}`, 0, -1);
       if (rawHistory.length > 0) {
-        return rawHistory.map((h) => JSON.parse(h));
+        const message = rawHistory.map((h) => JSON.parse(h));
+        return message.flatMap((msg) => [
+          { sender: 'user', text: msg.user },
+          { sender: 'ai', text: msg.ai },
+        ]);
       }
+
+      return [];
     } catch (error) {
-      throw new InternalServerErrorException('Failed to load chat history');
+      console.error('Error in fetching chat history:', error);
+      return [];
     }
   }
 }

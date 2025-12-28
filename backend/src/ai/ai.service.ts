@@ -83,8 +83,6 @@ export class AiService {
         throw new Error('Failed to generate chat response');
       }
 
-      console.log('AI Response:', chatResponse);
-
       return chatResponse.text;
     } catch (error) {
       if (error.status === 429) {
