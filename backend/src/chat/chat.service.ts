@@ -110,4 +110,16 @@ export class ChatService {
       throw new InternalServerErrorException('Failed to persist session');
     }
   }
+
+  // get chat history
+  async getChatHistory(sessionId: string) {
+    try {
+      const rawHistory = await this.redis.lrange(`chat:${sessionId}`, 0, -1);
+      if (rawHistory.length > 0) {
+        return rawHistory.map((h) => JSON.parse(h));
+      }
+    } catch (error) {
+      throw new InternalServerErrorException('Failed to load chat history');
+    }
+  }
 }

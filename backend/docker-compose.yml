@@ -12,5 +12,18 @@ services:
       - postgres_data:/var/lib/postgresql/data
     restart: always
 
+  redis:
+    image: redis:7-alpine
+    container_name: support-ai-redis
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes --requirepass rohitpassword
+    restart: unless-stopped
+    environment:
+      - REDIS_PASSWORD=rohitpassword
+
 volumes:
   postgres_data:
+  redis_data:
