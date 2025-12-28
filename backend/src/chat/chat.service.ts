@@ -3,7 +3,6 @@ import { AiService } from '../ai/ai.service';
 import { InjectRedis } from '@nestjs-modules/ioredis';
 import { Redis } from 'ioredis';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { timestamp } from 'rxjs';
 
 @Injectable()
 export class ChatService {

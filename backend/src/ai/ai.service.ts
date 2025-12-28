@@ -1,7 +1,7 @@
 import { Injectable, ServiceUnavailableException } from '@nestjs/common';
 import { GoogleGenAI } from '@google/genai';
 import { ConfigService } from '@nestjs/config';
-import { SUPPORT_AGENT_SYSTEM_PROMPT } from './prompts';
+import { SUPPORT_AGENT_SYSTEM_PROMPT, SYSTEM_PROMPT_TEST1 } from './prompts';
 
 @Injectable()
 export class AiService {
@@ -65,7 +65,7 @@ export class AiService {
     temperature?: number;
   }): Promise<string> {
     try {
-      const systemPrompt = SUPPORT_AGENT_SYSTEM_PROMPT(params.context);
+      const systemPrompt = SYSTEM_PROMPT_TEST1(params.context);
       const fullPrompt = `Previous conversation history:\n${params.chatHistory}\n\nCurrent user query:\n${params.userPrompt}`;
 
       // LLM call
