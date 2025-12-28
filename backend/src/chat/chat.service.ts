@@ -118,6 +118,7 @@ export class ChatService {
       const rawHistory = await this.redis.lrange(`chat:${sessionId}`, 0, -1);
       if (rawHistory.length > 0) {
         const message = rawHistory.map((h) => JSON.parse(h));
+        console.log('Chat history retrieved from Redis:', message);
         return message.flatMap((msg) => [
           { sender: 'user', text: msg.user },
           { sender: 'ai', text: msg.ai },

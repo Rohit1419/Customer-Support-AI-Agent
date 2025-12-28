@@ -30,6 +30,7 @@ export const ChatWidget = () => {
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingHistory, setIsLoadingHistory] = useState(true);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const [sessionId] = useState(() => {
@@ -39,22 +40,41 @@ export const ChatWidget = () => {
     return id;
   });
 
-  // FIXED: Robust Auto-scroll logic
+  // Fetch chat history on mount
+  useEffect(() => {
+    const loadHistory = async () => {
+      try {
+        const { data } = await chatApi.getHistory(sessionId);
+        console.log("Chat history loaded:", data);
+
+        if (data && data.length > 0) {
+          // Replace initial messages with history
+          setMessages(data);
+        }
+      } catch (error: any) {
+        // If no history exists (404), keep default welcome messages
+        console.log("No previous chat history found");
+      } finally {
+        setIsLoadingHistory(false);
+      }
+    };
+
+    loadHistory();
+  }, [sessionId]);
+
   const scrollToBottom = () => {
     if (scrollRef.current) {
-      // scrollIntoView often works better than manual scrollTop for nested components
       scrollRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
     }
   };
 
   useEffect(() => {
-    // Delay slightly to ensure DOM has rendered new messages
     const timer = setTimeout(scrollToBottom, 100);
     return () => clearTimeout(timer);
   }, [messages, isLoading]);
 
   const handleSend = async () => {
-    if (!input.trim() || isLoading) return; // Requirement check [cite: 71, 31]
+    if (!input.trim() || isLoading) return;
 
     const userMsg = input;
     setInput("");
@@ -71,11 +91,20 @@ export const ChatWidget = () => {
           sender: "ai",
           text: "I'm having trouble connecting right now. Please try again! 🛠️",
         },
-      ]); // Graceful failure requirement [cite: 75, 77]
+      ]);
     } finally {
       setIsLoading(false);
     }
   };
+
+  // Show loading state while fetching history
+  if (isLoadingHistory) {
+    return (
+      <Card className="w-full max-w-md h-[650px] flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
+      </Card>
+    );
+  }
 
   return (
     <Card className="w-full max-w-md h-[650px] flex flex-col shadow-2xl border-none rounded-2xl overflow-hidden bg-white">
