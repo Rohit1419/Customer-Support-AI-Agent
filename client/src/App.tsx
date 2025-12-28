@@ -1,10 +1,10 @@
 import "./App.css";
-import { ChatWidget } from "./components/ChatWidget";
+import LandingPage from "./pages/LandingPage";
 
 function App() {
   return (
     <>
-      <ChatWidget />
+      <LandingPage />
     </>
   );
 }
