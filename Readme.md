@@ -64,7 +64,7 @@ graph TB
     style Gemini fill:#fff9c4
 ```
 
-## 🔄 Request Flow Diagram
+## 🔄 Buckle Up! & see Lisa in action wild journy 🏃
 
 ```mermaid
 sequenceDiagram
@@ -104,92 +104,6 @@ sequenceDiagram
     Controller-->>Frontend: JSON response
     Frontend-->>User: Display message
 ```
-
-## 💾 Data Flow: Knowledge Ingestion
-
-```mermaid
-graph LR
-    subgraph "Ingestion Process"
-        MD[Markdown Files<br/>knowledgeData/]
-        Split[Text Splitter<br/>800 chars, 100 overlap]
-        Batch[Batch Processor<br/>Group chunks]
-        Embed[Gemini Embedding<br/>768 dimensions]
-        Normalize[Vector Normalization<br/>Cosine similarity]
-        Store[(PostgreSQL<br/>KnowledgeChunk table)]
-    end
-
-    MD -->|Read| Split
-    Split -->|Chunk| Batch
-    Batch -->|API Call| Embed
-    Embed -->|Raw vectors| Normalize
-    Normalize -->|Store| Store
-
-    style MD fill:#e3f2fd
-    style Split fill:#fff3e0
-    style Batch fill:#f3e5f5
-    style Embed fill:#fff9c4
-    style Normalize fill:#e8f5e9
-    style Store fill:#ffebee
-```
-
-## 🗄️ Database Schema
-
-```mermaid
-erDiagram
-    KnowledgeChunk {
-        uuid id PK
-        string content
-        vector_768 embedding
-        string sourceFile
-        string sourceType
-    }
-
-    Conversation {
-        string id PK
-        timestamp createdAt
-        timestamp updatedAt
-    }
-
-    Message {
-        uuid id PK
-        string conversationId FK
-        enum sender
-        text text
-        timestamp createdAt
-    }
-
-    Conversation ||--o{ Message : contains
-```
-
-## Redis Data Structure
-
-```mermaid
-graph TD
-    subgraph "Redis Keys"
-        Session[chat:session-uuid]
-    end
-
-    subgraph "List Structure"
-        Session --> Msg1["{user: 'Q1', ai: 'A1', ts: ...}"]
-        Session --> Msg2["{user: 'Q2', ai: 'A2', ts: ...}"]
-        Session --> Msg3["{user: 'Q3', ai: 'A3', ts: ...}"]
-        Session --> MsgN["... (max 10)"]
-    end
-
-    subgraph "TTL Behavior"
-        TTL[Expires after 10 minutes<br/>of inactivity]
-    end
-
-    Session -.->|EXPIRE| TTL
-
-    style Session fill:#ffebee
-    style Msg1 fill:#e8f5e9
-    style Msg2 fill:#e8f5e9
-    style Msg3 fill:#e8f5e9
-    style TTL fill:#fff9c4
-```
-
----
 
 ## 🏗️ Architecture & Design Decisions
 
