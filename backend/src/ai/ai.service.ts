@@ -61,15 +61,17 @@ export class AiService {
   async generateChatResponse(params: {
     context: string;
     userPrompt: string;
+    chatHistory?: string;
     temperature?: number;
   }): Promise<string> {
     try {
       const systemPrompt = SUPPORT_AGENT_SYSTEM_PROMPT(params.context);
+      const fullPrompt = `Previous conversation history:\n${params.chatHistory}\n\nCurrent user query:\n${params.userPrompt}`;
 
       // LLM call
       const chatResponse = await this.genAI.models.generateContent({
         model: 'gemini-2.5-flash-lite',
-        contents: [{ role: 'user', parts: [{ text: params.userPrompt }] }],
+        contents: [{ role: 'user', parts: [{ text: fullPrompt }] }],
         config: {
           systemInstruction: systemPrompt,
           temperature: params.temperature ?? 0.7,
