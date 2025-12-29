@@ -121,7 +121,7 @@ export const ChatWidget = () => {
               <div className="flex items-center gap-1.5 mt-1.5">
                 <Circle className="w-2 h-2 fill-green-400 text-green-400" />
                 <span className="text-[10px] text-blue-100 uppercase tracking-wider font-medium">
-                  Support Online
+                  Online
                 </span>
               </div>
             </div>
