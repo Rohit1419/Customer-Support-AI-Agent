@@ -1,5 +1,5 @@
 // src/components/ChatWidget.tsx
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Send, Bot, User, Loader2, Circle } from "lucide-react";
 import { chatApi } from "@/services/api";
 import { Button } from "@/components/ui/button";
@@ -100,14 +100,14 @@ export const ChatWidget = () => {
   // Show loading state while fetching history
   if (isLoadingHistory) {
     return (
-      <Card className="w-full max-w-md h-[650px] flex items-center justify-center">
+      <Card className="w-full max-w-md h-162.5 flex items-center justify-center">
         <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
       </Card>
     );
   }
 
   return (
-    <Card className="w-full max-w-md h-[650px] flex flex-col shadow-2xl border-none rounded-2xl overflow-hidden bg-white">
+    <Card className="w-full max-w-md h-162.5 flex flex-col shadow-2xl border-none rounded-2xl overflow-hidden bg-white">
       <CardHeader className="bg-blue-600 text-white py-4 px-6 shrink-0">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">

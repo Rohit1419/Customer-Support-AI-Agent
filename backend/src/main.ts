@@ -14,8 +14,9 @@ async function bootstrap() {
   );
 
   //cors
+  const CLIENT_URL = process.env.CLIENT_URL;
   app.enableCors({
-    origin: 'http://localhost:5173',
+    origin: 'CLIENT_URL',
     methods: ['GET', 'POST'],
   });
 

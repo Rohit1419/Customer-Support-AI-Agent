@@ -5,24 +5,21 @@ import {
   ShieldCheck,
   Database,
   MessageSquare,
-  ArrowRight,
   Sparkles,
   Github,
   TrendingUp,
   Layers,
   Bot,
   FileText,
-  Search,
   Code2,
   BookOpen,
-  ExternalLink,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50 font-sans text-slate-900">
+    <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50/30 to-slate-50 font-sans text-slate-900">
       {/* 1. Navigation */}
       <nav className="flex items-center justify-between px-8 py-6 max-w-7xl mx-auto backdrop-blur-sm bg-white/70 rounded-full mt-4 shadow-sm border border-slate-200/50">
         <div className="flex items-center gap-2 font-bold text-2xl tracking-tight text-blue-600">
@@ -218,25 +215,6 @@ function FeatureCard({
       </div>
       <h4 className="text-xl font-bold mb-3">{title}</h4>
       <p className="text-slate-600 leading-relaxed text-sm">{desc}</p>
-    </div>
-  );
-}
-
-function TechCard({ category, items }: { category: string; items: string[] }) {
-  return (
-    <div className="p-6 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20">
-      <h4 className="font-bold mb-4 text-lg">{category}</h4>
-      <ul className="space-y-2">
-        {items.map((item, idx) => (
-          <li
-            key={idx}
-            className="text-blue-100 text-sm flex items-center gap-2"
-          >
-            <div className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
-            {item}
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }
