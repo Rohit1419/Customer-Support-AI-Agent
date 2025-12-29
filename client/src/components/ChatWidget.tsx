@@ -1,4 +1,3 @@
-// src/components/ChatWidget.tsx
 import { useState, useEffect, useRef } from "react";
 import { Send, Bot, User, Loader2, Circle } from "lucide-react";
 import { chatApi } from "@/services/api";
