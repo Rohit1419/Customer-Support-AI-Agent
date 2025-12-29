@@ -17,6 +17,7 @@ async function bootstrap() {
   const CLIENT_URL = process.env.CLIENT_URL;
   app.enableCors({
     origin: [
+      '*',
       CLIENT_URL,
       'https://customer-support-ai-agent-e0zm8svpy-rohit1419s-projects.vercel.app',
     ],
