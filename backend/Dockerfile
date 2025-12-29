@@ -12,8 +12,6 @@ RUN pnpm install --frozen-lockfile
 # Copy source
 COPY backend .
 
-# Prisma client
-RUN pnpm prisma generate
 
 # Build Nest
 RUN pnpm build
