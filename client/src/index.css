@@ -1,5 +1,11 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@theme {
+  --color-primary: #000000;
+}
+
+/* Enable dark mode manually (if needed)
+@variant dark (&:where(.dark, .dark *)); */
 
 @custom-variant dark (&:is(.dark *));
 

@@ -15,13 +15,12 @@ async function bootstrap() {
 
   //cors
   const CLIENT_URL = process.env.CLIENT_URL;
+  console.log('CLIENT_URL:', CLIENT_URL);
   app.enableCors({
-    origin: [
-      '*',
-      CLIENT_URL,
-      'https://customer-support-ai-agent-e0zm8svpy-rohit1419s-projects.vercel.app',
-    ],
-    methods: ['GET', 'POST'],
+    origin: [CLIENT_URL, 'https://customer-support-ai-agent-six.vercel.app'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
+    credentials: true,
   });
 
   const PORT = process.env.PORT || 3000;
