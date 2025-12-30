@@ -110,7 +110,7 @@ const FrameworkPill = ({
     <button
       onClick={onClick}
       className={`
-        inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border transition-all duration-200 hover:scale-105 hover:shadow-md
+        inline-flex items-center px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border transition-all duration-200 hover:scale-105 hover:shadow-md whitespace-nowrap
         ${
           active
             ? "bg-white dark:bg-gray-900 border-gray-300 dark:border-gray-700 shadow-sm"
@@ -118,8 +118,8 @@ const FrameworkPill = ({
         }
       `}
     >
-      <Icon className="w-4 h-4 mr-1.5 sm:mr-2" />
-      <span className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">
+      <Icon className="w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0" />
+      <span className="text-sm sm:text-base font-medium text-gray-700 dark:text-gray-300">
         {text}
       </span>
     </button>
@@ -181,7 +181,7 @@ export default function Hero5() {
               build scalable AI systems with Retrieval Augmented Generation.
             </p>
 
-            <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-16">
+            <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-8 sm:mb-16 max-w-4xl mx-auto">
               {frameworks.map((fw) => (
                 <FrameworkPill
                   key={fw.id}
