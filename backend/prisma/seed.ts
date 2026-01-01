@@ -88,7 +88,7 @@ async function ingestMarkdownFile(filePath: string) {
 /* ---------- Entry ---------- */
 
 async function main() {
-  const file = path.resolve(process.cwd(), 'knowledgeData/FAQ.md');
+  const file = path.resolve(process.cwd(), 'knowledgeData/Warranty.md');
   if (!file) {
     throw new Error('Usage: seed-knowledge <markdown-file>');
   }
