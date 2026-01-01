@@ -7,126 +7,95 @@ audience: customer
 last_reviewed: 2025-12-26
 ---
 
-# Spur Store Master FAQ
+# Frequently Asked Questions (FAQs)
 
-## 1. What are your standard shipping times?
+## 🚚 Delivery
 
-### Answer
+**Q: How much will my order cost to ship?**  
+**A:** Shipping is **£5 for all orders**, except for **matting**, which incurs a **£49 pallet delivery charge**.
 
-Standard shipping within the United States typically takes **5–7 business days** after your order has been processed.
+**Q: How will my purchases be delivered?**  
+**A:** Factory Weights uses professional courier companies. Larger items or large orders may be **palletised** and delivered via a pallet courier.
 
-### Details
+**Q: How long will my delivery take to arrive?**  
+**A:**
 
-- Order processing usually takes 1-2 business days.
-- You will receive a tracking number via email as soon as your package leaves our warehouse.
+- Orders placed **before 3pm on working days** qualify for **next-day delivery**
+- Bulky items (e.g. barbells) may take **up to 3 working days**
+- Very large or heavy orders delivered on a pallet may take **up to 4 business days**
 
----
+**Q: I only received part of my order. Where is the rest?**  
+**A:** Large multi-item orders may arrive in separate deliveries due to size and weight. If part of your order has arrived, the remaining items should arrive **within the next working day**. Please allow **at least 48 hours** before contacting support.
 
-## 2. Do you offer international shipping?
-
-### Answer
-
-Yes! We currently ship to **the United States, Canada, and the United Kingdom**.
-
-### Details
-
-- Shipping to Canada and the UK usually takes 10–14 business days.
-- Please note that international orders may be subject to customs fees or import duties.
+**Q: Do you ship internationally?**  
+**A:** No. Factory Weights currently ships **within the UK only**.
 
 ---
 
-## 3. What is your return policy?
+## 🔄 Returns
 
-### Answer
+**Q: What is your return policy?**  
+**A:** Factory Weights offers a **30-day money-back guarantee** on all unused products.
 
-We offer a **30-day return policy** for most items in their original, unused condition with the tags still attached.
+**Q: Will you cover the cost of return shipping?**  
+**A:** Return shipping costs are **only covered for faulty items**.
 
-### Details
+**Q: How do I return a product?**  
+**A:** Email **help@factoryweights.co.uk** with:
 
-- Returns must be initiated within 30 days of the delivery date.
-- A valid receipt or order number is required for all returns.
+- The item(s) you wish to return
+- Reason for return
+- Order name and order number (if available)
 
----
+**Q: My item arrived damaged. What should I do?**  
+**A:** Email **help@factoryweights.co.uk** with:
 
-## 4. How do I start a refund request?
-
-### Answer
-
-To start a refund, please email our support team at **support@spurstore.com** with your order number and the reason for the return.
-
-### Details
-
-- Once we receive and inspect your returned item, we will process your refund to the original payment method within 5-10 business days.
-
----
-
-## 5. What are your customer support hours?
-
-### Answer
-
-Our support team is available **Monday through Friday, from 9:00 AM to 6:00 PM EST**.
-
-### Details
-
-- We are closed on major US holidays.
-- If you message us outside of these hours, we will get back to you on the next business day.
+- Photos of the damage
+- Your name
+- Your order number
 
 ---
 
-## 6. How can I track my order?
+## 💳 Payments & Offers
 
-### Answer
+**Q: What payment methods do you accept?**  
+**A:** All major **credit and debit cards** are accepted.
 
-Once your order ships, we will send you an email with a **tracking link**.
+**Q: Are discounts or offers available?**  
+**A:** Yes.
 
-### Details
+- Sign up to our **mailing list** for exclusive discounts
+- **Bulk commercial discounts** are available for gym owners, personal trainers, and commercial clients
+- Contact **help@factoryweights.co.uk** for bulk pricing enquiries
 
-- You can also track your order by logging into your account on the Spur Store website and viewing your order history.
+**Q: Do you offer finance options?**  
+**A:** Yes.
 
----
-
-## 7. Can I cancel or change my order after placing it?
-
-### Answer
-
-We process orders quickly, but we offer a **1-hour window** for cancellations or changes after an order is placed.
-
-### Details
-
-- Please contact us immediately at support@spurstore.com if you need to make a change. After one hour, the order has likely entered our fulfillment process and cannot be modified.
+- **Klarna** payments are available
+- Additional finance options may be available for **large bulk orders**
+- Contact **help@factoryweights.co.uk** for more information
 
 ---
 
-## 8. What payment methods do you accept?
+## 📦 Tracking Orders
 
-### Answer
-
-We accept all major credit cards including **Visa, Mastercard, American Express, and Discover**.
-
-### Details
-
-- We also support digital wallets like Apple Pay, Google Pay, and PayPal for a faster checkout experience.
+**Q: How can I track my order?**  
+**A:** Tracking details will be **emailed to you** once your order has been dispatched. Please note that some couriers may not provide tracking information.
 
 ---
 
-## 9. What should I do if I receive a damaged item?
+## 📞 Contact Us
 
-### Answer
+**Q: What is the best way to contact Factory Weights?**  
+**A:** You can contact us via:
 
-If your item arrives damaged or defective, please contact us within **48 hours of delivery**.
+- Email: **help@factoryweights.co.uk**
+- Phone: **0800 470 0945**
+- Social media (Instagram or Facebook)
 
-### Details
-
-- Include photos of the damage and your order number in your email to support@spurstore.com. We will send a replacement at no extra cost to you.
-
----
-
-## 10. Do you have a physical store location?
-
-### Answer
-
-Spur Store is currently **online-only**.
-
-### Details
-
-- By operating exclusively online, we are able to offer higher quality products at more competitive prices. We do not have any brick-and-mortar retail locations at this time.
+**Q: What is your address?**  
+**A:**  
+Factory Weights  
+90 Camlachie Street  
+Glasgow  
+G31 4AD
