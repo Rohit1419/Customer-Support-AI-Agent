@@ -14,6 +14,7 @@ import {
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
+import { MdSupportAgent } from "react-icons/md";
 
 interface Message {
   sender: "user" | "ai";
@@ -120,7 +121,7 @@ export const ChatWidget = () => {
       <CardHeader className="bg-blue-600 text-white py-4 px-6 shrink-0">
         <div className="flex items-center gap-3">
           <div className="bg-white/20 p-2 rounded-full">
-            <Bot className="w-6 h-6 text-white" />
+            <MdSupportAgent className="w-6 h-6 text-white" />
           </div>
           <div>
             <CardTitle className="text-lg font-semibold">Lisa</CardTitle>
@@ -154,7 +155,7 @@ export const ChatWidget = () => {
                   {m.sender === "user" ? (
                     <User className="w-4 h-4" />
                   ) : (
-                    <Bot className="w-4 h-4" />
+                    <MdSupportAgent className="w-4 h-4" />
                   )}
                 </div>
 
