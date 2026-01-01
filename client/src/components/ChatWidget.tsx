@@ -38,9 +38,12 @@ export const ChatWidget = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       sender: "ai",
-      text: "Hey! I'm **Lisa**, your customer support assistant. 👋",
+      text: "Hey! I'm **Lisa**, your Factory Weights support assistant. 👋",
     },
-    { sender: "ai", text: "How can I help you today?" },
+    {
+      sender: "ai",
+      text: "I can help you with orders, delivery, gym design, and product information. How can I assist you today?",
+    },
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -124,7 +127,7 @@ export const ChatWidget = () => {
             <MdSupportAgent className="w-6 h-6 text-white" />
           </div>
           <div>
-            <CardTitle className="text-lg font-semibold">Lisa</CardTitle>
+            <CardTitle className="text-lg font-semibold">Lisa </CardTitle>
             <div className="flex items-center gap-1.5 mt-1">
               <Circle className="w-2 h-2 fill-green-400 text-green-400" />
               <span className="text-[10px] text-blue-100 uppercase font-medium">
