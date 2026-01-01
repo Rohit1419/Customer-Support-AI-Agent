@@ -199,7 +199,7 @@ pnpm install
 
 # Install frontend dependencies
 cd ../client
-npm install
+pnpm install
 ```
 
 ### 2. Environment Configuration
@@ -246,10 +246,10 @@ docker ps
 npx prisma migrate dev
 
 # Seed the knowledge base
-npm run seed
+npx prisma db seed
 ```
 
-This will ingest all Markdown files from `knowledgeData/`, chunk them, embed them, and store them in pgvector.
+This will ingest all Markdown files from `knowledgeData/`, chunk them, embed them, and store them in pgvector. You have to set the file path seperatly for each file
 
 ### 5. Run the Application
 
@@ -266,7 +266,7 @@ pnpm start:dev
 
 ```bash
 cd client
-npm run dev
+pnpm run dev
 # Frontend runs on http://localhost:5173
 ```
 
@@ -330,6 +330,7 @@ Retrieve conversation history for a session.
 | Normalized embeddings     | 15% improvement in retrieval accuracy                  |
 | 10-message context window | Keeps token count manageable while maintaining context |
 | RAG architecture          | Cuts token usage massively, reducing API costs         |
+| Rate Limit Per session    | Prevents abuse & api spam                              |
 
 ---
 
