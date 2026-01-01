@@ -1,12 +1,14 @@
-import { Body, Controller, Post, Get, Param } from '@nestjs/common';
+import { Body, Controller, Post, Get, Param, UseGuards } from '@nestjs/common';
 import { ChatService } from './chat.service';
 import { sendMessageDto } from './dto';
+import { QuotaGuard } from './gaurd';
 
 @Controller('chat')
 export class ChatController {
   constructor(private chatService: ChatService) {}
 
   @Post('/message')
+  @UseGuards(QuotaGuard)
   async sendMessage(@Body() dto: sendMessageDto) {
     return this.chatService.getChatResponse(dto.message, dto.sessionId);
   }

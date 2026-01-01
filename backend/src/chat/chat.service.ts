@@ -58,6 +58,11 @@ export class ChatService {
 
       return { response: aiResponse };
     } catch (error) {
+      if (error.status === 429) {
+        throw new InternalServerErrorException(
+          "I am sorry, but I'm currently experiencing a high volume of requests. Please try again later.",
+        );
+      }
       console.error('Error in getChatResponse:', error);
       throw new InternalServerErrorException(
         'Failed to generate chat response',
