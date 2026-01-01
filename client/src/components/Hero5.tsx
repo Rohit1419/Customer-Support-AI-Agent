@@ -167,7 +167,7 @@ export default function Hero5() {
             }`}
           >
             <div className="inline-flex items-center px-3 py-1 rounded-full bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 text-sm font-medium tracking-wide transition-colors duration-300 mb-4 sm:mb-6">
-              Powered by Gemini 2.5 Flash Lite
+              Powered with Gemini 2.5 Flash Lite
             </div>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mt-4 sm:mt-6 mb-4 sm:mb-6 leading-tight transition-colors duration-300">

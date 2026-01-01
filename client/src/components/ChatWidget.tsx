@@ -23,7 +23,7 @@ export const ChatWidget = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       sender: "ai",
-      text: "Hey! I'm **Lisa**, your Spur customer support assistant. 👋",
+      text: "Hey! I'm **Lisa**, your  customer support assistant. 👋",
     },
     { sender: "ai", text: "How can I help you today?" },
   ]);
@@ -46,8 +46,7 @@ export const ChatWidget = () => {
         const { data } = await chatApi.getHistory(sessionId);
         console.log("Chat history loaded:", data);
 
-        if (data && data.length > 0) {
-          // Replace initial messages with history
+        if (Array.isArray(data) && data.length > 0) {
           setMessages(data);
         }
       } catch (error: any) {
@@ -84,11 +83,25 @@ export const ChatWidget = () => {
       const { data } = await chatApi.sendMessage(userMsg, sessionId);
       setMessages((prev) => [...prev, { sender: "ai", text: data.response }]);
     } catch (error: any) {
+      let errorMessage =
+        "I'm having trouble connecting right now. Please try again! 🛠️";
+
+      // Check for quota exceeded (429 status)
+      if (error.response?.status === 429) {
+        errorMessage =
+          " I think i'm able to solve your issue, i will connenct you to a human agent. 🙋‍♂  ️";
+      } else if (error.response?.status === 500) {
+        errorMessage =
+          "Something went wrong on our end. Please try again in a moment! ⚠️";
+      } else if (error.response?.status === 400) {
+        errorMessage =
+          "Invalid request. Please check your message and try again! ❌";
+      }
       setMessages((prev) => [
         ...prev,
         {
           sender: "ai",
-          text: "I'm having trouble connecting right now. Please try again! 🛠️",
+          text: errorMessage,
         },
       ]);
     } finally {
