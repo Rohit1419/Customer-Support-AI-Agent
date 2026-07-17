@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { Plug, Route } from "lucide-react";
 
 // --- PNG ICONS (Project Technologies) ---
 const NestJSIcon = ({ className }: { className?: string }) => (
@@ -50,6 +51,14 @@ const LangChainIcon = ({ className }: { className?: string }) => (
   />
 );
 
+const OpenRouterIcon = ({ className }: { className?: string }) => (
+  <Route className={className} strokeWidth={1.75} />
+);
+
+const MCPIcon = ({ className }: { className?: string }) => (
+  <Plug className={className} strokeWidth={1.75} />
+);
+
 const GithubIcon = ({ className }: { className?: string }) => (
   <svg
     className={className}
@@ -89,6 +98,8 @@ const iconMap = {
   prisma: PrismaIcon,
   redis: RedisIcon,
   langchain: LangChainIcon,
+  openrouter: OpenRouterIcon,
+  mcp: MCPIcon,
 };
 
 // --- REUSABLE COMPONENTS ---
@@ -143,6 +154,8 @@ export default function Hero5() {
     { id: "prisma", name: "Prisma" },
     { id: "redis", name: "Redis" },
     { id: "langchain", name: "LangChain" },
+    { id: "openrouter", name: "OpenRouter" },
+    { id: "mcp", name: "MCP" },
   ];
 
   return (
@@ -167,18 +180,19 @@ export default function Hero5() {
             }`}
           >
             <div className="inline-flex items-center px-3 py-1 rounded-full bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 text-sm font-medium tracking-wide transition-colors duration-300 mb-4 sm:mb-6">
-              Powered with Gemini 2.5 Flash Lite
+              Agentic RAG · Powered by OpenRouter
             </div>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mt-4 sm:mt-6 mb-4 sm:mb-6 leading-tight transition-colors duration-300">
               AI Support Agent
               <br className="hidden sm:block" />
-              <span className="sm:hidden"> </span>Built with RAG
+              <span className="sm:hidden"> </span>Built with RAG + Tools
             </h1>
 
             <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-6 sm:mb-8 leading-relaxed transition-colors duration-300">
-              A production-ready customer support chatbot demonstrating how to
-              build scalable AI systems with Retrieval Augmented Generation.
+              A production-ready customer support agent built on
+              retrieval-augmented, tool-calling AI — pluggable into any
+              e-commerce store via MCP.
             </p>
 
             <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-8 sm:mb-16 max-w-4xl mx-auto">

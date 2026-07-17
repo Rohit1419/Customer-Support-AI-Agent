@@ -6,6 +6,8 @@ import {
   MessageSquare,
   TrendingUp,
   FileText,
+  Plug,
+  Route,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import Hero5 from "@/components/Hero5";
@@ -13,6 +15,26 @@ import Features from "@/components/Features";
 import Footer from "@/components/Footer";
 
 const featuresList = [
+  {
+    icon: Plug,
+    title: "MCP Tool Integration",
+    description:
+      "Connects to any store's MCP server over Streamable HTTP. Point it at a different tool server and the agent inherits new capabilities — no backend redeploy required.",
+    cardBorderColor:
+      "border-indigo-600/40 hover:border-indigo-600 dark:border-indigo-400/40 dark:hover:border-indigo-400",
+    avatarTextColor: "text-indigo-600 dark:text-indigo-400",
+    avatarBgColor: "bg-indigo-600/10 dark:bg-indigo-400/10",
+  },
+  {
+    icon: Route,
+    title: "Model-Agnostic via OpenRouter",
+    description:
+      "Chat completions run through OpenRouter's OpenAI-compatible API. Swapping the underlying LLM is a config change, not a code change.",
+    cardBorderColor:
+      "border-orange-600/40 hover:border-orange-600 dark:border-orange-400/40 dark:hover:border-orange-400",
+    avatarTextColor: "text-orange-600 dark:text-orange-400",
+    avatarBgColor: "bg-orange-600/10 dark:bg-orange-400/10",
+  },
   {
     icon: Database,
     title: "Redis Session Buffer",
