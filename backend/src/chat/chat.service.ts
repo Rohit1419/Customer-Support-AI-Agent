@@ -34,10 +34,9 @@ export class ChatService {
       // retriveing theh chat histroy /
       const history = await this.redis.lrange(`chat:${sessionId}`, -10, -1);
 
-      const chatHistory = history
-        .map((h) => JSON.parse(h))
-        .map((msg) => `user: ${msg.user}\n ai: ${msg.ai}`)
-        .join('\n\n');
+      const chatHistory = history.map(
+        (h) => JSON.parse(h) as { user: string; ai: string },
+      );
 
       // now chatting withh LLLM to get the response
       const aiResponse = await this.aiService.generateChatResponse({
